@@ -1,62 +1,18 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jumper Game</title>
-    <style>
-        body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0; }
-        canvas { background: #000; display: block; }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <canvas id="gameCanvas" width="800" height="400"></canvas>
-    <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-
-        let player = { x: 50, y: 300, width: 50, height: 50, dy: 0 };
-        const gravity = 0.5;
-        const jumpStrength = -10;
-        let isJumping = false;
-
-        function drawPlayer() {
-            ctx.fillStyle = 'white';
-            ctx.fillRect(player.x, player.y, player.width, player.height);
-        }
-
-        function updatePlayer() {
-            player.dy += gravity;
-            player.y += player.dy;
-
-            if (player.y + player.height > canvas.height) {
-                player.y = canvas.height - player.height;
-                player.dy = 0;
-                isJumping = false;
-            }
-        }
-
-        function jump() {
-            if (!isJumping) {
-                player.dy = jumpStrength;
-                isJumping = true;
-            }
-        }
-
-        document.addEventListener('keydown', (event) => {
-            if (event.code === 'Space') {
-                jump();
-            }
-        });
-
-        function gameLoop() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawPlayer();
-            updatePlayer();
-            requestAnimationFrame(gameLoop);
-        }
-
-        gameLoop();
-    </script>
+    <h1>Jumper Game</h1>
+    <div id="game">
+        <div id="player"></div>
+        <div id="obstacle"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 </body>
 </html>
