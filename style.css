@@ -1,0 +1,39 @@
+/* static/css/style.css */
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+#game {
+    position: relative;
+    width: 600px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #000;
+    overflow: hidden;
+}
+
+#player {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+}
+
+#obstacle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    animation: moveObstacle 2s linear infinite;
+}
+
+@keyframes moveObstacle {
+    0% { right: 0; }
+    100% { right: 600px; }
+}
